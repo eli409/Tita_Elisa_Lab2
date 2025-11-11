@@ -17,6 +17,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<LibraryIdentityContext>();
 
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/Books");
+    options.Conventions.AllowAnonymousToPage("/Books/Index");
+    options.Conventions.AllowAnonymousToPage("/Books/Details");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
